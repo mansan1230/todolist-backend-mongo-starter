@@ -37,4 +37,11 @@ public class Todo {
     public void setDone(Boolean done) {
         this.done = done;
     }
+
+    public String toString() {
+
+        // Simply returning the name and age of person
+        return id + " " + text + " " + done;
+    }
+
 }

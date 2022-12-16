@@ -3,9 +3,7 @@ package com.afs.todolist.controller;
 import com.afs.todolist.controller.mapper.TodoMapper;
 import com.afs.todolist.entity.Todo;
 import com.afs.todolist.service.TodoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,23 @@ public class TodoController {
     @GetMapping
     List<Todo> getAll() {
         return todoService.findAll();
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean deleteTodos(@PathVariable String id) {
+        todoService.deleteTodo(id);
+        return true;
+    }
+    @PutMapping("/{id}")
+    public Todo updateTodo(@PathVariable String id,@RequestBody Todo todo) {
+
+        System.out.println(todo);
+        todoService.updateTodo(id,todo);
+        return todo;
+    }
+    @PostMapping()
+    public Todo postTodo(@RequestBody Todo todo) {
+        todoService.addTodo(todo);
+        return todo;
     }
 }

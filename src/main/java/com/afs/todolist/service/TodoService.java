@@ -7,6 +7,8 @@ import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class TodoService {
@@ -19,6 +21,18 @@ public class TodoService {
 
     public List<Todo> findAll() {
         return todoRepository.findAll();
+    }
+
+    public void deleteTodo(String id) {
+        todoRepository.deleteById(id);
+    }
+    public void addTodo(Todo todo) {
+        todoRepository.save(todo);
+    }
+
+    public void updateTodo(String id,Todo todo) {
+        validateObjectId(id);
+        todoRepository.save(todo);
     }
 
     private void validateObjectId(String id){
